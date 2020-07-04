@@ -3,6 +3,7 @@ const Group = require('../models/group')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 const { generateLoginKey, generateLoginKeys } = require('../utils/loginkey')
+const { agentJoinUrl, glanceClient } = require('../utils/urls')
 
 
 router.post('/groups', auth, async (req, res) => {
@@ -13,6 +14,7 @@ router.post('/groups', auth, async (req, res) => {
 
     try {
         await group.save()
+        group.loginKey = generateLoginKey(group)
         res.status(201).send(group)
     } catch(e) {
         res.status(400).send(e)
@@ -36,6 +38,8 @@ router.get('/groups/:id', auth, async (req, res) => {
             return res.status(404).send()
         }
         group.loginKey = generateLoginKey(group)
+        group.agentJoin = agentJoinUrl(group)
+        group.glanceClient = glanceClient(group)
         res.send(group)
     } catch(e) {
         res.status(500).send()

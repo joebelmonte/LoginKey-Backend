@@ -46,6 +46,14 @@ const groupSchema = new mongoose.Schema({
         max: 86400, // Number of seconds in 1 day
         default: 3600 // Defaults to 1 hour
     },
+    agentJoin: {
+        type: String,
+        default: 'initialvalue'
+    },
+    glanceClient: {
+        type: String,
+        default: 'initialvalue'
+    },
     loginKey: {
         type: String,
         default:'initialValue'
