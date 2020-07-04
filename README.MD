@@ -18,16 +18,18 @@ All API endpoints accept and return JSON.
 
 ## Authentication
 
-All REST API endpoints expect an authorization token to be send in an Authorization header as follows:
+All REST API endpoints (other than account creation and logging in) expect an authorization token to be send in an Authorization header as follows:
 
 `Authorization : Bearer [authorization token]`
 
-Tokens can be obtained by creating an account or logging in with email/password.  Once issues, tokens are valid for 1 day.
+Tokens can be obtained by creating an account or logging in with email/password.  Once issued, tokens are valid for 1 day.
 
-### Creating an Account
+## Account endpoints
+
+### Create an account
 POST to `/users`
 
-Example request body:
+**Example request body:**
 
 ```json
 {
@@ -36,7 +38,7 @@ Example request body:
 }
 ```
 
-Example response body:
+**Example response body:**
 
 ```json
 {
@@ -49,10 +51,10 @@ Example response body:
 }
 ```
 
-### Logging in
+### Log in
 POST to `/users/login`
 
-Example request body:
+**Example request body:**
 
 ```json
 {
@@ -61,7 +63,7 @@ Example request body:
 }
 ```
 
-Example response body:
+**Example response body:**
 
 ```json
 {
@@ -74,12 +76,12 @@ Example response body:
 }
 ```
 
-### Deleting an account
+### Delete an account
 DELETE to `/users/me`
 
 No parameters required on submission other than authorization token.
 
-Example response body:
+**Example response body:**
 
 ```json
 {
@@ -89,8 +91,165 @@ Example response body:
 }
 ```
 
-## Endpoints
+## Group endpoints
+### Create a group
+POST to `/groups`
 
+**Example request body:**
+
+```json
+{
+    "name":"Example Group",
+    "partnerId":12345,
+    "apiKey":"mySecretApiKey",
+    "partnerUserId": "uniqueUserIdentifier",
+    "timeout": 3600
+}
+```
+*timeout* is optional and defaults to 3600 seconds.  The max value allowed is 86400 (1 day).  All other fields required.
+
+**Example response body:**
+
+```json
+{
+    "timeout": 3600,
+    "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908430$Wf7vDWWv1Ci5VrcUvtWuJh_jLgZIfectGUPkg6DbZws",
+    "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908430$Wf7vDWWv1Ci5VrcUvtWuJh_jLgZIfectGUPkg6DbZws",
+    "loginKey": "$1$1593908430$Wf7vDWWv1Ci5VrcUvtWuJh_jLgZIfectGUPkg6DbZws",
+    "_id": "5f010ebee3896d316674a2bc",
+    "name": "Example Group",
+    "partnerId": 12345,
+    "partnerUserId": "uniqueUserIdentifier",
+    "owner": "5f010d00e3896d316674a2b9",
+    "__v": 0
+}
+```
+
+### Read a group
+GET to `/groups/:groupID`
+
+No request body required.
+
+**Example response body:**
+
+```json
+{
+    "timeout": 3600,
+    "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908590$XCD2ygOUWB892h1xVRy7X0DkUf0w-J8DwnZOWXWCAoY",
+    "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908590$XCD2ygOUWB892h1xVRy7X0DkUf0w-J8DwnZOWXWCAoY",
+    "loginKey": "$1$1593908590$XCD2ygOUWB892h1xVRy7X0DkUf0w-J8DwnZOWXWCAoY",
+    "_id": "5f010ebee3896d316674a2bc",
+    "name": "Example Group",
+    "partnerId": 12345,
+    "partnerUserId": "uniqueUserIdentifier",
+    "owner": "5f010d00e3896d316674a2b9",
+    "__v": 0
+}
+```
+
+### Read all groups
+GET to `/groups`
+
+No request body required.
+
+**Example response body:**
+
+```json
+[
+    {
+        "timeout": 3600,
+        "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "loginKey": "$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "_id": "5f010d51e3896d316674a2bb",
+        "name": "Example Group",
+        "partnerId": 12345,
+        "partnerUserId": "uniqueUserIdentifier",
+        "owner": "5f010d00e3896d316674a2b9",
+        "__v": 0
+    },
+    {
+        "timeout": 3600,
+        "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "loginKey": "$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "_id": "5f010ebee3896d316674a2bc",
+        "name": "Example Group 2",
+        "partnerId": 12346,
+        "partnerUserId": "uniqueUserIdentifier",
+        "owner": "5f010d00e3896d316674a2b9",
+        "__v": 0
+    },
+    {
+        "timeout": 3600,
+        "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "loginKey": "$1$1593908675$cwgx4A5akR6jkKMODEvNOzucjenBMQdP2aD-1wz0msc",
+        "_id": "5f010f90e3896d316674a2bd",
+        "name": "Example Group 3",
+        "partnerId": 12347,
+        "partnerUserId": "uniqueUserIdentifier",
+        "owner": "5f010d00e3896d316674a2b9",
+        "__v": 0
+    }
+]
+```
+
+### Update group
+POST to `/groups/:groupID`
+
+**Example request body:**
+
+```json
+{
+    "name":"Example Group Updated Name",
+    "partnerId":54321,
+    "apiKey":"newSecretApiKey",
+    "partnerUserId": "newUniqueUserIdentifier",
+    "timeout": 1000
+}
+```
+
+All fields optional.
+
+**Example response body:**
+
+```json
+{
+    "timeout": 1000,
+    "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=54321&partneruserid=newUniqueUserIdentifier&loginkey=$1$1593906477$wncY1-sgNS11n_T9oqrGBRAQOUXeoLpvs7z0DzHdI7k",
+    "glanceClient": "glancepanorama://authenticate?partnerid=54321&partneruserid=newUniqueUserIdentifier&loginkey=$1$1593906477$wncY1-sgNS11n_T9oqrGBRAQOUXeoLpvs7z0DzHdI7k",
+    "loginKey": "$1$1593906477$wncY1-sgNS11n_T9oqrGBRAQOUXeoLpvs7z0DzHdI7k",
+    "_id": "5f010ebee3896d316674a2bc",
+    "name": "Example Group Updated Name",
+    "partnerId": 54321,
+    "partnerUserId": "newUniqueUserIdentifier",
+    "owner": "5f010d00e3896d316674a2b9",
+    "__v": 0
+}
+```
+
+### Delete group
+DELETE to `/groups/:groupID`
+
+No request body required.
+
+**Example response body:**
+
+```json
+{
+    "timeout": 1000,
+    "agentJoin": "initialvalue",
+    "glanceClient": "initialvalue",
+    "loginKey": "initialValue",
+    "_id": "5f010ebee3896d316674a2bc",
+    "name": "Example Group Updated Name",
+    "partnerId": 54321,
+    "partnerUserId": "newUniqueUserIdentifier",
+    "owner": "5f010d00e3896d316674a2b9",
+    "__v": 0
+}
+```
 
 
 ## To Dos:
