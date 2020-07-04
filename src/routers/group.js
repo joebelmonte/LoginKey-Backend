@@ -3,7 +3,7 @@ const Group = require('../models/group')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 const { generateLoginKey, generateLoginKeys } = require('../utils/loginkey')
-const { agentJoinUrl, glanceClient } = require('../utils/urls')
+const { agentJoinUrl, glanceClient, agentJoinUrls, glanceClients } = require('../utils/urls')
 
 
 router.post('/groups', auth, async (req, res) => {
@@ -15,6 +15,8 @@ router.post('/groups', auth, async (req, res) => {
     try {
         await group.save()
         group.loginKey = generateLoginKey(group)
+        group.agentJoin = agentJoinUrl(group)
+        group.glanceClient = glanceClient(group)
         res.status(201).send(group)
     } catch(e) {
         res.status(400).send(e)
@@ -25,6 +27,8 @@ router.get('/groups', auth, async (req, res) => {
     try {
         const groups = await Group.find({owner: req.user._id})
         generateLoginKeys(groups)
+        agentJoinUrls(groups)
+        glanceClients(groups)
         res.send(groups)
     } catch(e) {
         res.status(500).send(e)
@@ -62,6 +66,9 @@ router.patch('/groups/:id', auth, async (req, res) => {
 
         updates.forEach((update) => group[update] = req.body[update])
         await group.save()
+        group.loginKey = generateLoginKey(group)
+        group.agentJoin = agentJoinUrl(group)
+        group.glanceClient = glanceClient(group)
         res.send(group)
 
     } catch(e) {
