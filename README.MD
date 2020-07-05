@@ -1,24 +1,46 @@
-# LoginKey Back End
+LoginKey Back End
+=====
 **By Joe Belmonte**
 
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [LoginKey Back End](#loginkey-back-end)
-  - [Definitions](#definitions)
-  - [Authentication](#authentication)
-  - [Account endpoints](#account-endpoints)
-    - [Create an account](#create-an-account)
-    - [Log in](#log-in)
-    - [Delete an account](#delete-an-account)
-  - [Group endpoints](#group-endpoints)
-    - [Create a group](#create-a-group)
-    - [Read a group](#read-a-group)
-    - [Read all groups](#read-all-groups)
-    - [Update group](#update-group)
-    - [Delete group](#delete-group)
-  - [To Dos:](#to-dos)
+- [Overview](#overview)
+- [Configuration](#configuration)
+- [Definitions](#definitions)
+- [Authentication](#authentication)
+- [Account endpoints](#account-endpoints)
+  - [Create an account](#create-an-account)
+  - [Log in](#log-in)
+  - [Delete an account](#delete-an-account)
+- [Group endpoints](#group-endpoints)
+  - [Create a group](#create-a-group)
+  - [Read a group](#read-a-group)
+  - [Read all groups](#read-all-groups)
+  - [Update group](#update-group)
+  - [Delete group](#delete-group)
+- [To Dos:](#to-dos)
+  - [Password reset](#password-reset)
 <!-- TOC END -->
 
-## Definitions
+# Overview
+
+This api demonstrates a means to authenticate to certain services from [Glance Networks](https://ww2.glance.net) by generating a login key server side.  It is meant to be used in conjunction with a Glance account (or accounts). For more information, see [here](https://help.glance.net/integrations/login-key/).
+
+This api is written in Node, using Express, Mongoose, and MongoDB. 
+
+User passwords are hashed.  Group API Keys are encryped in the database.  
+
+# Configuration
+
+The following environment variables must be defined:
+
+| Variable               | Definition                                              |
+|------------------------|---------------------------------------------------------|
+| PORT                   | Port that the server listens on.                        |
+| JWT_SECRET             | Key used for hashing JWT authentication tokens.         |
+| MONGODB_URL            | Database URL.                                           |
+| API_KEY_ENCRYPTION_KEY | Secret key used for encrypting and decrypting API Keys. |
+
+# Definitions
 
 | Term          | Definition                                                                     | Value                    |
 |---------------|--------------------------------------------------------------------------------|--------------------------|
@@ -33,7 +55,7 @@
 
 All API endpoints accept and return JSON.
 
-## Authentication
+# Authentication
 
 This API uses the JSON Web Token (JWT) standard for creating, signing, and verifying authorization tokens.  All REST API endpoints (other than account creation and logging in) expect an authorization token to be sent in an Authorization header as follows:
 
@@ -41,9 +63,9 @@ This API uses the JSON Web Token (JWT) standard for creating, signing, and verif
 
 Tokens can be obtained by creating an account or logging in with email/password.  Once issued, tokens are valid for 1 day.
 
-## Account endpoints
+# Account endpoints
 
-### Create an account
+## Create an account
 POST to `/users`
 
 **Example request body:**
@@ -68,7 +90,7 @@ POST to `/users`
 }
 ```
 
-### Log in
+## Log in
 POST to `/users/login`
 
 **Example request body:**
@@ -93,7 +115,7 @@ POST to `/users/login`
 }
 ```
 
-### Delete an account
+## Delete an account
 DELETE to `/users/me`
 
 No parameters required on submission other than authorization token.
@@ -108,8 +130,8 @@ No parameters required on submission other than authorization token.
 }
 ```
 
-## Group endpoints
-### Create a group
+# Group endpoints
+## Create a group
 POST to `/groups`
 
 **Example request body:**
@@ -142,7 +164,7 @@ POST to `/groups`
 }
 ```
 
-### Read a group
+## Read a group
 GET to `/groups/:groupID`
 
 No request body required.
@@ -164,7 +186,7 @@ No request body required.
 }
 ```
 
-### Read all groups
+## Read all groups
 GET to `/groups`
 
 No request body required.
@@ -212,7 +234,7 @@ No request body required.
 ]
 ```
 
-### Update group
+## Update group
 POST to `/groups/:groupID`
 
 **Example request body:**
@@ -246,7 +268,7 @@ All fields optional.
 }
 ```
 
-### Delete group
+## Delete group
 DELETE to `/groups/:groupID`
 
 No request body required.
@@ -269,5 +291,5 @@ No request body required.
 ```
 
 
-## To Dos:
-- Password reset
+# To Dos:
+## Password reset
