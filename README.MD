@@ -1,6 +1,8 @@
 # LoginKey Back End
 ### By Joe Belmonte
 
+<!-- TOC -->autoauto- [LoginKey Back End](#loginkey-back-end)auto        - [By Joe Belmonte](#by-joe-belmonte)auto    - [Definitions](#definitions)auto    - [Authentication](#authentication)auto    - [Account endpoints](#account-endpoints)auto        - [Create an account](#create-an-account)auto        - [Log in](#log-in)auto        - [Delete an account](#delete-an-account)auto    - [Group endpoints](#group-endpoints)auto        - [Create a group](#create-a-group)auto        - [Read a group](#read-a-group)auto        - [Read all groups](#read-all-groups)auto        - [Update group](#update-group)auto        - [Delete group](#delete-group)auto    - [To Dos:](#to-dos)autoauto<!-- /TOC -->
+
 ## Definitions
 
 | Term          | Definition                                                                     | Value                    |
@@ -18,7 +20,7 @@ All API endpoints accept and return JSON.
 
 ## Authentication
 
-All REST API endpoints (other than account creation and logging in) expect an authorization token to be send in an Authorization header as follows:
+This API uses the JSON Web Token (JWT) standard for creating, signing, and verifying authorization tokens.  All REST API endpoints (other than account creation and logging in) expect an authorization token to be sent in an Authorization header as follows:
 
 `Authorization : Bearer [authorization token]`
 
