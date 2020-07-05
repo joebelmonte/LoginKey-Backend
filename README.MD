@@ -1,9 +1,8 @@
 # LoginKey Back End
-### By Joe Belmonte
+**By Joe Belmonte**
 
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [LoginKey Back End](#loginkey-back-end)
-    - [By Joe Belmonte](#by-joe-belmonte)
   - [Definitions](#definitions)
   - [Authentication](#authentication)
   - [Account endpoints](#account-endpoints)
