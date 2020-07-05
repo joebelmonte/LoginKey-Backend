@@ -5,7 +5,7 @@ LoginKey Back End
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [Configuration](#configuration)
-- [Definitions](#definitions)
+- [Glossary of Terms](#glossary-of-terms)
 - [Authentication](#authentication)
 - [Account endpoints](#account-endpoints)
   - [Create an account](#create-an-account)
@@ -40,7 +40,7 @@ The following environment variables must be defined:
 | MONGODB_URL            | Database URL.                                           |
 | API_KEY_ENCRYPTION_KEY | Secret key used for encrypting and decrypting API Keys. |
 
-# Definitions
+# Glossary of Terms
 
 | Term          | Definition                                                                     | Value                    |
 |---------------|--------------------------------------------------------------------------------|--------------------------|
