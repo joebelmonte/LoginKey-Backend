@@ -23,7 +23,7 @@ LoginKey Back End
 
 # Overview
 
-This api demonstrates a means to authenticate to certain services from [Glance Networks](https://ww2.glance.net) by generating a login key server side.  It is meant to be used in conjunction with a Glance account (or accounts). For more information, see [here](https://help.glance.net/integrations/login-key/).
+This api demonstrates a means to authenticate to certain services from <a href="https://ww2.glance.net" target="_blank">Glance Networks</a> by generating a login key server side.  It is meant to be used in conjunction with a Glance account (or accounts). For more information, see <a href="https://help.glance.net/integrations/login-key/" target="_blank">here</a>.
 
 This api is written in Node, using Express, Mongoose, and MongoDB. 
 
