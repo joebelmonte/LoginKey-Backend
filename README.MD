@@ -1,7 +1,23 @@
 # LoginKey Back End
 ### By Joe Belmonte
 
-<!-- TOC -->autoauto- [LoginKey Back End](#loginkey-back-end)auto        - [By Joe Belmonte](#by-joe-belmonte)auto    - [Definitions](#definitions)auto    - [Authentication](#authentication)auto    - [Account endpoints](#account-endpoints)auto        - [Create an account](#create-an-account)auto        - [Log in](#log-in)auto        - [Delete an account](#delete-an-account)auto    - [Group endpoints](#group-endpoints)auto        - [Create a group](#create-a-group)auto        - [Read a group](#read-a-group)auto        - [Read all groups](#read-all-groups)auto        - [Update group](#update-group)auto        - [Delete group](#delete-group)auto    - [To Dos:](#to-dos)autoauto<!-- /TOC -->
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
+- [LoginKey Back End](#loginkey-back-end)
+    - [By Joe Belmonte](#by-joe-belmonte)
+  - [Definitions](#definitions)
+  - [Authentication](#authentication)
+  - [Account endpoints](#account-endpoints)
+    - [Create an account](#create-an-account)
+    - [Log in](#log-in)
+    - [Delete an account](#delete-an-account)
+  - [Group endpoints](#group-endpoints)
+    - [Create a group](#create-a-group)
+    - [Read a group](#read-a-group)
+    - [Read all groups](#read-all-groups)
+    - [Update group](#update-group)
+    - [Delete group](#delete-group)
+  - [To Dos:](#to-dos)
+<!-- TOC END -->
 
 ## Definitions
 
