@@ -39,6 +39,7 @@ The following environment variables must be defined:
 | JWT_SECRET             | Key used for hashing JWT authentication tokens.         |
 | MONGODB_URL            | Database URL.                                           |
 | API_KEY_ENCRYPTION_KEY | Secret key used for encrypting and decrypting API Keys. |
+| FRONTENDORIGIN         | Origin of the front end app, for CORS                   |
 
 # Glossary of Terms
 
@@ -76,6 +77,7 @@ POST to `/users`
     "password":"myPasswordWillBeHashed"
 }
 ```
+Both fields required.  Password must be at least 6 characters in length.
 
 **Example response body:**
 
@@ -101,6 +103,7 @@ POST to `/users/login`
     "password":"myPasswordWillBeHashed"
 }
 ```
+Both fields required. 
 
 **Example response body:**
 
@@ -293,3 +296,6 @@ No request body required.
 
 # To Dos:
 ## Password reset
+## Create and document a "clear all groups" endpoint
+## Document the rest of the user endpoints
+## Email validation

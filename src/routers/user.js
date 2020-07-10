@@ -1,10 +1,16 @@
 const express = require('express')
+var cors = require('cors')
 const User = require('../models/user')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 
+var corsOptions = {
+    origin: process.env.FRONTENDORIGIN,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
-router.post('/users', async (req, res) => {
+// Create a user
+router.post('/users', cors(corsOptions), async (req, res) => {
     const user = new User(req.body)
 
     try { 
