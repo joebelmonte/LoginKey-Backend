@@ -43,17 +43,16 @@ The following environment variables must be defined:
 
 # Glossary of Terms
 
-| Term          | Definition                                                                     | Value                    |
-|---------------|--------------------------------------------------------------------------------|--------------------------|
-| name          | Name of the group - can be any arbitary value.                                 | String                   |
-| partnerId     | The partnerId is the same as your Glance group id. This is assigned by Glance. | Numeric                  |
-| apiKey        | Secret key for the group.                                                      | String                   |
-| partnerUserId | A unique user identifier.                                                      | String                   |
-| timeout       | Duration for which the login key will be valid. Expressed in seconds from now. | Numeric                  |
-| loginKey      | A time-limited token used to authenticate a user to various Glance services.   | (returned from API only) |
-| agentJoin     | URL which will open and authenticate to the Agent Join page on glance.net.     | (returned from API only) |
-| glanceClient  | URL which will open and authenticate to the Glance client (if installed).      | (returned from API only) |
-
+| Term          | Definition                                                                                                                                                                                                                                                                        | Value                                                   |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| name          | Name of the group - can be any arbitary value.                                                                                                                                                                                                                                    | String, required                                        |
+| partnerId     | The partnerId is the same as your Glance group id. This is assigned by Glance.                                                                                                                                                                                                    | Numeric, required                                       |
+| apiKey        | Secret key for the group.                                                                                                                                                                                                                                                         | String, required                                        |
+| partnerUserId | A unique user identifier.                                                                                                                                                                                                                                                         | String, required                                        |
+| timeout       | Sets the length of time for which the login key will be valid. Values of <= 86400 (1 day) are interpreted as relative, in seconds from now.  Values of > 86400 are interpreted as absolute, in UNIX Epoch time. The maximum time in the future for a valid expiration is one day. | Numeric, optional (defaults to 3600 seconds, or 1 hour) |
+| loginKey      | A time-limited token used to authenticate a user to various Glance services.                                                                                                                                                                                                      | String (returned from API only)                         |
+| agentJoin     | URL which will open and authenticate to the Agent Join page on glance.net.                                                                                                                                                                                                        | String (returned from API only)                         |
+| glanceClient  | URL which will open and authenticate to the Glance client (if installed).                                                                                                                                                                                                         | String (returned from API only)                         |
 All API endpoints accept and return JSON.
 
 # Authentication

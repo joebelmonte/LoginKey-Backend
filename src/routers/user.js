@@ -22,7 +22,7 @@ router.post('/users', cors(corsOptions), async (req, res) => {
     }
 })
 
-router.post('/users/login', async (req, res) => {
+router.post('/users/login', cors(corsOptions), async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken()

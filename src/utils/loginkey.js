@@ -417,7 +417,10 @@ map();
     var partnerUserId = partnerUserId;
     var apiKey = apiKey;
     var timeout = parseInt(timeout, 10);
-    var expires = UTCTimestamp() + timeout;
+    var expires = timeout
+    if (timeout <= 86400) {
+      expires = UTCTimestamp() + timeout;
+    }
     var validuntil = UTCValidUntil(expires);
     var keystring = partnerId + partnerUserId + version + expires;
     var hmac = CryptoJS.HmacSHA256(keystring, apiKey);
