@@ -90,4 +90,17 @@ router.delete('/groups/:id', auth, async (req, res) => {
 })
 
 
+router.delete('/groups', auth, async (req, res) => {
+    try {
+        const group = await Group.deleteMany({owner: req.user._id})
+        if(!group){
+            res.status(404).send()
+        }
+        res.send(group)
+
+    } catch(e) {
+        res.status(500).send()
+    }
+})
+
 module.exports = router

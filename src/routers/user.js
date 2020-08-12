@@ -22,6 +22,7 @@ router.post('/users', cors(corsOptions), async (req, res) => {
     }
 })
 
+// Login
 router.post('/users/login', cors(corsOptions), async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
@@ -32,6 +33,7 @@ router.post('/users/login', cors(corsOptions), async (req, res) => {
     }
 })
 
+// Logout
 router.post('/users/logout', auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -44,6 +46,7 @@ router.post('/users/logout', auth, async (req, res) => {
     }
 })
 
+// Log out of all devices
 router.post('/users/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
@@ -54,10 +57,12 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 })
 
+// Get user profile
 router.get('/users/me', auth, async (req, res) => {
     res.send(req.user)
 })
 
+// Update user profile
 router.patch('/users/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['email', 'password']
@@ -78,6 +83,7 @@ router.patch('/users/me', auth, async (req, res) => {
     }
 })
 
+// delete an account
 router.delete('/users/me', auth, async (req, res) => {
     try {
         await req.user.remove()

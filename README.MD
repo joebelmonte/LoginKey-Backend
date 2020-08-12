@@ -2,7 +2,8 @@ LoginKey Back End
 =====
 **By Joe Belmonte**
 
-<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
+# Table of contents
+
 - [Overview](#overview)
 - [Configuration](#configuration)
 - [Glossary of Terms](#glossary-of-terms)
@@ -10,6 +11,10 @@ LoginKey Back End
 - [Account endpoints](#account-endpoints)
   - [Create an account](#create-an-account)
   - [Log in](#log-in)
+  - [Get User Profile](#get-user-profile)
+  - [Update User Profile](#update-user-profile)
+  - [Log out of current device](#log-out-of-current-device)
+  - [Log out of all devices](#log-out-of-all-devices)
   - [Delete an account](#delete-an-account)
 - [Group endpoints](#group-endpoints)
   - [Create a group](#create-a-group)
@@ -17,9 +22,10 @@ LoginKey Back End
   - [Read all groups](#read-all-groups)
   - [Update group](#update-group)
   - [Delete group](#delete-group)
+  - [Delete all groups](#delete-all-groups)
 - [To Dos:](#to-dos)
   - [Password reset](#password-reset)
-<!-- TOC END -->
+  - [Email validation](#email-validation)
 
 # Overview
 
@@ -118,10 +124,89 @@ Both fields required.
 }
 ```
 
+## Get User Profile
+GET to `/users/me`
+
+**Request:**
+
+No request body required, only authentication token needed.
+
+**Example response body:**
+
+```json
+{
+    "_id": "5f333dde6b105b08a4ab3717",
+    "email": "joe@example.com",
+    "__v": 2
+}
+```
+
+## Update User Profile
+POST to `/users/me`
+
+**Example request body:**
+
+```json
+{
+    "email":"bob@example.com",
+    "password": "mynewpassword"
+}
+```
+
+*email* and *password* are the only allowed fields.  They are both optional.
+
+**Example response body:**
+
+```json
+{
+    "_id": "5f333dde6b105b08a4ab3717",
+    "email": "bob@example.com",
+    "__v": 2
+}
+```
+
+
+
+## Log out of current device
+POST to `/users/logout`
+
+This will delete the token currently being used by the client.
+
+**Request:**
+
+No request body required, only authentication token needed.
+
+**Response**
+
+No response body.
+
+Response status 200 indicates successful log out.
+
+Response status 500 indicates log out failure.
+
+## Log out of all devices
+POST to `/users/logoutAll`
+
+This will delete all authentication tokens associated with the user.
+
+**Request:**
+
+No request body required, only authentication token needed.
+
+**Response**
+
+No response body.
+
+Response status 200 indicates successful log out.
+
+Response status 500 indicates log out failure.
+
 ## Delete an account
 DELETE to `/users/me`
 
-No parameters required on submission other than authorization token.
+**Request:**
+
+No request body required, only authentication token needed.
 
 **Example response body:**
 
@@ -148,7 +233,7 @@ POST to `/groups`
     "timeout": 3600
 }
 ```
-*timeout* is optional and defaults to 3600 seconds.  The max value allowed is 86400 (1 day).  All other fields required.
+*timeout* is optional and defaults to 3600 seconds (1 hour) if not included.  All other fields required.
 
 **Example response body:**
 
@@ -192,7 +277,7 @@ No request body required.
 ## Read all groups
 GET to `/groups`
 
-No request body required.
+No request body required, only authentication token needed.
 
 **Example response body:**
 
@@ -274,7 +359,9 @@ All fields optional.
 ## Delete group
 DELETE to `/groups/:groupID`
 
-No request body required.
+**Request:**
+
+No request body required, only authentication token needed.
 
 **Example response body:**
 
@@ -293,9 +380,24 @@ No request body required.
 }
 ```
 
+## Delete all groups
+DELETE to `/groups`
+
+**Request:**
+
+No request body required, only authentication token needed.
+
+**Example response body:**
+
+```json
+{
+    "n": 4,
+    "ok": 1,
+    "deletedCount": 4
+}
+```
+
 
 # To Dos:
 ## Password reset
-## Create and document a "clear all groups" endpoint
-## Document the rest of the user endpoints
 ## Email validation
