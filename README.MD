@@ -170,13 +170,13 @@ POST to `/users/me`
 ## Log out of current device
 POST to `/users/logout`
 
-This will delete the token currently being used by the client.
+This will delete the token being used to authenticate.
 
 **Request:**
 
 No request body required, only authentication token needed.
 
-**Response**
+**Response:**
 
 No response body.
 
@@ -193,7 +193,7 @@ This will delete all authentication tokens associated with the user.
 
 No request body required, only authentication token needed.
 
-**Response**
+**Response:**
 
 No response body.
 
