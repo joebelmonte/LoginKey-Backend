@@ -18,6 +18,7 @@ LoginKey Back End
   - [Delete an account](#delete-an-account)
 - [Group endpoints](#group-endpoints)
   - [Create a group](#create-a-group)
+  - [Clone a group with optional changes](#clone-a-group-with-optional-changes)
   - [Read a group](#read-a-group)
   - [Read all groups](#read-all-groups)
   - [Update group](#update-group)
@@ -268,7 +269,6 @@ If no parameters are specified, an exact copy will be created.
     "name":"New Name, Duplicate Everything Else"
 }
 ```
-*timeout* is optional and defaults to 3600 seconds (1 hour) if not included.  All other fields required.
 
 **Example response body:**
 
