@@ -143,7 +143,7 @@ No request body required, only authentication token needed.
 ```
 
 ## Update User Profile
-POST to `/users/me`
+PATCH to `/users/me`
 
 **Example request body:**
 
@@ -359,7 +359,7 @@ No request body required, only authentication token needed.
 ```
 
 ## Update group
-POST to `/groups/:groupID`
+PATCH to `/groups/:groupID`
 
 **Example request body:**
 
