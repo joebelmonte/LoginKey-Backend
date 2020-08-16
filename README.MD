@@ -252,6 +252,42 @@ POST to `/groups`
 }
 ```
 
+## Clone a group with optional changes
+POST to `/groups/clone/:groupID`
+
+All parameters are optional.
+
+Creates an exact copy of the group specified by `:groupID` and then overwrites existing properties with the parameters specified, if any.  
+
+If no parameters are specified, an exact copy will be created.
+
+**Example request body:**
+
+```json
+{
+    "name":"New Name, Duplicate Everything Else"
+}
+```
+*timeout* is optional and defaults to 3600 seconds (1 hour) if not included.  All other fields required.
+
+**Example response body:**
+
+```json
+{
+    "timeout": 3600,
+    "agentJoin": "https://www.glance.net/agentjoin/AgentJoin.aspx?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=initialValue",
+    "glanceClient": "glancepanorama://authenticate?partnerid=12345&partneruserid=uniqueUserIdentifier&loginkey=initialValue",
+    "loginKey": "$1$1597595372$GR4bRX693m72g5Vttn5g2TyQsfy4Si6IvbESFs2PFLI",
+    "_id": "5f3950dcf0a83332cc506a65",
+    "name": "New Name, Duplicate Everything Else",
+    "partnerId": 12345,
+    "partnerUserId": "uniqueUserIdentifier",
+    "owner": "5f37e6674eaf63fbdb0fc30a",
+    "__v": 0
+}
+```
+
+
 ## Read a group
 GET to `/groups/:groupID`
 
