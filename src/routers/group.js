@@ -30,6 +30,7 @@ router.post('/groups', cors(corsOptions), auth, async (req, res) => {
     }
 })
 
+// Read all groups
 router.get('/groups', cors(corsOptions), auth, async (req, res) => {
     try {
         const groups = await Group.find({owner: req.user._id})
@@ -42,6 +43,7 @@ router.get('/groups', cors(corsOptions), auth, async (req, res) => {
     }
 })
 
+// Read a group
 router.get('/groups/:id', cors(corsOptions), auth, async (req, res) => {
     try {
         const group = await Group.findOne({_id: req.params.id, owner: req.user._id})
@@ -55,6 +57,25 @@ router.get('/groups/:id', cors(corsOptions), auth, async (req, res) => {
     } catch(e) {
         res.status(500).send()
     }
+})
+
+// API Key Confirmation
+
+router.post('/groups/apikey/confirm/:groupID', cors(corsOptions), auth, async (req, res) => {
+    const apiKey = req.body.apiKey
+
+    try{
+        const group = await Group.findOne({_id: req.params.groupID, owner: req.user._id})
+        if(!group) {
+            return res.status(404).send()
+        }
+        const match = apiKey === group.apiKey
+        res.json({ match })
+
+    } catch(e){
+        res.status(500).send()
+    }
+
 })
 
 // Update group

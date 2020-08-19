@@ -358,6 +358,27 @@ No request body required, only authentication token needed.
 ]
 ```
 
+## Confirm API Key
+POST to `/groups/apikey/confirm/:groupID`
+
+Returns `true` if the API Key passed in the request matches what's currently stored for the group in the database.  Returns `false` if they do not match.
+
+**Example request body:**
+
+```json
+{
+    "apiKey":"mySecretApiKey"
+}
+```
+
+**Example response body:**
+
+```json
+{
+    "match": true
+}
+```
+
 ## Update group
 PATCH to `/groups/:groupID`
 
