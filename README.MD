@@ -21,6 +21,7 @@ LoginKey Back End
   - [Clone a group with optional changes](#clone-a-group-with-optional-changes)
   - [Read a group](#read-a-group)
   - [Read all groups](#read-all-groups)
+  - [Confirm API Key](#confirm-api-key)
   - [Update group](#update-group)
   - [Delete group](#delete-group)
   - [Delete all groups](#delete-all-groups)
