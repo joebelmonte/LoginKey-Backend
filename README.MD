@@ -4,7 +4,7 @@ LoginKey Back End
 
 # Table of contents
 
-- [Overview](#overview)
+- [About](#about)
 - [Configuration](#configuration)
 - [Glossary of Terms](#glossary-of-terms)
 - [Authentication](#authentication)
@@ -29,13 +29,17 @@ LoginKey Back End
   - [Password reset](#password-reset)
   - [Email validation](#email-validation)
 
-# Overview
+# About
 
 This API demonstrates a means to authenticate to certain services from [Glance Networks](https://ww2.glance.net) by generating a login key server side.  It is meant to be used in conjunction with a Glance account (or accounts). For more information, see [here](https://help.glance.net/integrations/login-key/).
 
 This API is written in Node, using Express, Mongoose, and MongoDB. 
 
-User passwords are hashed.  Group API Keys are encryped in the database.  
+User passwords are hashed.  Group API Keys are encryped in the database.
+
+For a deployed example of this app, see [here](https://loginkey-api.herokuapp.com).
+
+For an example front end connected to this API, see [here](https://loginkey-app.herokuapp.com).
 
 # Configuration
 
